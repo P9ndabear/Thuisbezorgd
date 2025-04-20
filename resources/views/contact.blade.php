@@ -12,6 +12,25 @@
 
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <!-- Fallback styles in case Tailwind doesn't load -->
+        <style>
+            .submit-button {
+                background-color: #f97316 !important; /* Orange-500 */
+                color: white !important;
+                padding: 12px 24px;
+                border-radius: 6px;
+                font-weight: 500;
+                width: 100%;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                transition: background-color 0.2s;
+            }
+            .submit-button:hover {
+                background-color: #ea580c !important; /* Orange-600 */
+            }
+        </style>
     </head>
     <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
         
@@ -22,7 +41,7 @@
             <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contact</h1>
             
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-                <form action="{{ route('contact.send') }}" method="POST" class="space-y-6">
+                <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
                     @csrf
                     
                     <div>
@@ -49,9 +68,9 @@
                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500"></textarea>
                     </div>
 
-                    <div>
+                    <div class="mt-6">
                         <button type="submit" 
-                                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                                class="submit-button w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-md text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors duration-200">
                             Verstuur bericht
                         </button>
                     </div>

@@ -11,12 +11,17 @@ class DishController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dishes = Dish::where('is_available', true)->latest()->get();
-    return view('menu', compact('dishes'));
-        // $dishes = Dish::latest()->get(); // Get dishes, newest first
-        // return view('dishes.index', compact('dishes'));
+        $dishes = Dish::all();
+        
+        // Als de route 'menu' is, gebruik dan de menu view
+        if ($request->route()->getName() === 'menu') {
+            return view('menu', compact('dishes'));
+        }
+        
+        // Anders gebruik de admin dishes view
+        return view('dishes.index', compact('dishes'));
     }
 
     /**
